@@ -1,15 +1,9 @@
-import numpy as np
-import cv2
+from io import BytesIO
+from time import sleep
+from picamera import PiCamera
 
-cap = cv2.VideoCapture(0)
-
-while(True):
-    ret, img = cap.read()
-    img = cv2.flip(img, 0)
-    img = cv2.flip(img, 1)
-    cv2.imshow('img', img)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+my_stream = BytesIO()
+caerma = PiCamera()
+camera.start_preview()
+sleep(2)
+# camera.capture(my_stream, 'jpeg')
