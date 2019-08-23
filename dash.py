@@ -1,9 +1,19 @@
-from io import BytesIO
-from time import sleep
+from picamera.array import PiRGBArray
 from picamera import PiCamera
 
-my_stream = BytesIO()
 camera = PiCamera()
-camera.start_preview()
-sleep(2)
-# camera.capture(my_stream, 'jpeg')
+camera.resolution = (640, 480)
+camera.framerate = 32
+raw_capture = PiRGBArray(camera, size=(648, 480))
+
+time.sleep(0.1)
+
+for frame in camera.capture_continuous(raw_capture, format="bgr", use_video_port=True):
+    image = frame.array
+
+    cv2.imshow("Frame", image)
+    key = cv2.waitKey(1) & 0xFF
+
+    raw_capture.truncate(0)
+    if key == ord('q'):
+        break
