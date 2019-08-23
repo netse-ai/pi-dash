@@ -14,9 +14,12 @@ while(True):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     for (x,y,w,h) in faces:
-        print (x, y, x+w, y+h)
-        # hyp = int((x+w)^2 + (y+h)^2)
-        print (x+w)^2 + (y+h)^2
+        try:
+            print (x, y, x+w, y+h)
+            # hyp = int((x+w)^2 + (y+h)^2)
+            print (x+w)^2 + (y+h)^2
+        except TypeError:
+            print "Error"
 
         # # img = cv2.circle(img, (x+w/2,y+h/2), int(hyp*.8), (255, 0, 0), 2)
         # cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
