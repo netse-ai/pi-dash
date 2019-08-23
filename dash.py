@@ -9,6 +9,7 @@ cap = cv2.VideoCapture(0)
 while(True):
     ret, img = cap.read()
     img = cv2.flip(img, 0)
+    img = cv2.flip(img, 1)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     cars = car_cascade.detectMultiScale(gray, 1.3, 5)
     for (x,y,w,h) in cars:
